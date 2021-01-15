@@ -7,13 +7,11 @@ import './styles/base.css'
 import './styles/iconfont.css'
 // 导入amfe-flexible
 import 'amfe-flexible'
-// 按需加载vant组件
-import { Button } from 'vant'
-// 全局注册组件
-import HmHeader from './components/HmHeader.vue'
+// 导入全局组件
+import './utils/global'
+// 导入vant
+import './utils/vant'
 
-Vue.component('hm-header', HmHeader)
-Vue.use(Button)
 Vue.config.productionTip = false
 
 new Vue({
