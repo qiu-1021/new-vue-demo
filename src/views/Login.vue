@@ -29,6 +29,12 @@
 
 <script>
 export default {
+  created() {
+	console.log(this.$route.params)
+	const { username, password } = this.$route.params
+	this.username = username
+	this.password = password
+  },
   data() {
   	return {
   	  username: '',
@@ -56,7 +62,9 @@ export default {
 	  if (statusCode === 200) {
 		this.$toast.success(message)
 		// 保存token，跳转个人中心
-		this.$router.push('/user')
+		this.$router.push({
+		  name: 'user'
+		})
 	  } else {
 		this.$toast.fail(message)
 	  }

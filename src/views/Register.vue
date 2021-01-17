@@ -66,7 +66,12 @@ export default {
       const { statusCode, message } = res.data
       if (statusCode === 200) {
         this.$toast.success(message)
-        this.$router.push('/login')
+        // this.$router.push(`/login?username=${this.user.username}&password=${this.user.password}`)
+        // 等价于
+        this.$router.push({
+          name: 'login',
+          params: this.user
+        })
       } else {
         this.$toast.fail(message)
       }
