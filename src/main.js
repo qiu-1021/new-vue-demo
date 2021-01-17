@@ -11,9 +11,13 @@ import 'amfe-flexible'
 import './utils/global'
 // 导入vant
 import './utils/vant'
-
+// 导入axios
+import axios from 'axios'
+// 把axios挂载到vue原型
+Vue.prototype.$axios = axios
+// 给axios配置默认baseURL，基准地址
+axios.defaults.baseURL = 'http://localhost:3000'
 Vue.config.productionTip = false
-
 new Vue({
   router,
   render: h => h(App)
