@@ -16,9 +16,22 @@ const routes = [
     path: '/user', component: User, name: 'user'
   }
 ]
-
+// 全局的把push的异常给处理了
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 const router = new VueRouter({
   routes
+})
+// 路由前置守卫
+const token = localStorage.getItem('token')
+router.beforeEach(function(to, from, next) {
+  if (to.name !== 'user' || token) {
+    next()
+  } else {
+    router.push('/login')
+  }
 })
 
 export default router

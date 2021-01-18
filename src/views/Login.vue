@@ -58,12 +58,15 @@ export default {
 		password: this.password
 	  })
 	  console.log(res)
-	  const { statusCode, message } = res.data
+	  const { statusCode, message, data } = res.data
 	  if (statusCode === 200) {
 		this.$toast.success(message)
-		// 保存token，跳转个人中心
+		// 保存token
+		localStorage.setItem('token', data.token)
+		localStorage.setItem('userId', data.user.id)
+		// 跳转个人中心
 		this.$router.push({
-		  name: 'user'
+		  path: '/user'
 		})
 	  } else {
 		this.$toast.fail(message)
